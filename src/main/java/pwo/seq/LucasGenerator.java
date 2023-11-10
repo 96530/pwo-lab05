@@ -24,4 +24,21 @@ public class LucasGenerator extends FibonacciGenerator {
         }
         return super.nextTerm();
     }
+
+    @Override 
+    public BigDecimal previousTerm() {
+        if (lastIndex > 1) {
+            BigDecimal temp = f_2;
+            f_2 = current.subtract(f_1);
+            current = f_1;
+            f_1 = temp;
+        } else if (lastIndex == 1) {
+            current = new BigDecimal(2);
+        } else {
+            current = new BigDecimal(0);
+        }
+
+        lastIndex--;
+        return current;
+    }
 }
